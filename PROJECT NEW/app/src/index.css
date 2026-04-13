@@ -1,0 +1,271 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* SulAmérica Brand Colors */
+    --sulamerica-navy: 214 100% 21%;
+    --sulamerica-orange: 30 100% 50%;
+    
+    /* shadcn/ui theme variables */
+    --background: 0 0% 100%;
+    --foreground: 214 100% 21%;
+    --card: 0 0% 100%;
+    --card-foreground: 214 100% 21%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 214 100% 21%;
+    --primary: 214 100% 21%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 30 100% 50%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 30 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 214 100% 21%;
+    --radius: 0.625rem;
+    
+    /* Sidebar variables */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 214 100% 21%;
+    --sidebar-primary: 214 100% 21%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 30 100% 50%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 214 100% 21%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Pulsing CTA Button Animation */
+  .animate-pulse-subtle {
+    animation: pulse-subtle 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-subtle {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(255, 121, 0, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 12px rgba(255, 121, 0, 0);
+    }
+  }
+  
+  /* Stronger pulse for primary CTA */
+  .animate-pulse-strong {
+    animation: pulse-strong 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-strong {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(255, 121, 0, 0.6);
+    }
+    50% {
+      transform: scale(1.02);
+      box-shadow: 0 0 0 16px rgba(255, 121, 0, 0);
+    }
+  }
+  
+  /* Fade in animation */
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out forwards;
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Slide up animation */
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out forwards;
+  }
+  
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Form input focus styles */
+  .form-input-focus {
+    @apply transition-all duration-200;
+  }
+  
+  .form-input-focus:focus {
+    @apply ring-2 ring-[#002F6C] ring-offset-2;
+  }
+  
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+  
+  .card-hover:hover {
+    @apply -translate-y-1 shadow-xl;
+  }
+  
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#002F6C] to-[#0047A0];
+  }
+  
+  /* Glass effect */
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+  
+  /* Loading skeleton shimmer */
+  .skeleton-shimmer {
+    @apply relative overflow-hidden;
+  }
+  
+  .skeleton-shimmer::after {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  .scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: #002F6C #f1f5f9;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-track {
+    @apply bg-slate-100 rounded-full;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    @apply bg-[#002F6C] rounded-full;
+  }
+  
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    @apply bg-[#001f4d];
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Focus visible styles */
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-[#002F6C] focus-visible:ring-offset-2;
+  }
+  
+  /* Text balance for better typography */
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Toast notifications customization */
+[data-sonner-toast] {
+  --normal-bg: white;
+  --normal-text: #002F6C;
+  --normal-border: #e2e8f0;
+}
+
+[data-sonner-toast][data-type="success"] {
+  --normal-bg: #f0fdf4;
+  --normal-text: #166534;
+  --normal-border: #bbf7d0;
+}
+
+[data-sonner-toast][data-type="error"] {
+  --normal-bg: #fef2f2;
+  --normal-text: #dc2626;
+  --normal-border: #fecaca;
+}
+
+[data-sonner-toast][data-type="warning"] {
+  --normal-bg: #fffbeb;
+  --normal-text: #d97706;
+  --normal-border: #fcd34d;
+}
+
+[data-sonner-toast][data-type="info"] {
+  --normal-bg: #eff6ff;
+  --normal-text: #2563eb;
+  --normal-border: #bfdbfe;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .animate-pulse-subtle,
+  .animate-pulse-strong {
+    animation: none;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
